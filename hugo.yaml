@@ -6,7 +6,7 @@ theme: gokarna
 enableEmoji: true
 enableRobotsTXT: true
 enableGitInfo: false
-togglePreviousAndNextButtons: "true"
+togglePreviousAndNextButtons: true
 showBackToTopButton: true
 
 params:
