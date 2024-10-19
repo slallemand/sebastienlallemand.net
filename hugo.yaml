@@ -1,0 +1,127 @@
+baseURL: '/'
+defaultContentLanguage: fr
+languageCode: fr
+title: Sébastien LALLEMAND
+theme: gokarna
+enableEmoji: true
+enableRobotsTXT: true
+enableGitInfo: false
+togglePreviousAndNextButtons: "true"
+showBackToTopButton: true
+
+params:
+  avatarAltText: "avatar"
+  avatarSize: "size-m"
+  avatarURL: "/images/me.webp"
+  metaKeywords:
+    - blog
+    - home-assistant
+    - linux
+    - containers
+    - podman
+  footer: Sébastien LALLEMAND
+  showPostsOnHomePage: recent
+  numberPostsOnHomePage: 3
+  dateFormat: 02 Jan 2006
+  socialIcons:
+    - name: twitter
+      url: 'https://x.com/slallemand_rh'
+    - name: github
+      url: 'https://github.com/slallemand'
+    - name: linkedin
+      url: 'https://www.linkedin.com/in/s%C3%A9bastien-lallemand-7000828/'
+sitemap:
+  changefreq: weekly
+  filename: sitemap.xml
+  priority: 0.5
+
+languages:
+  fr:
+    disabled: false
+    languageCode: fr-FR
+    languageDirection: ltr
+    languageName: French
+    weight: 1
+    params:
+      subtitle: 'Référence, Tutoriaux, Explications'
+      description: "Blog plus ou moins technique d'un Solution Architect un peu geek"
+    menu: 
+      main:
+        - identifier: home
+          pre: "<span data-feather='home'></span>"
+          weight: 1
+          name: Accueil
+          url: "/"
+        - identifier: posts
+          url: /posts/
+          pre: "<span data-feather='book'></span>"
+          name: Articles
+          weight: 2
+        - identifier: tags
+          pre: "<span data-feather='tag'></span>"
+          name: Tags
+          url: /tags/
+          weight: 3
+        - identifier: about
+          pre: "<span data-feather='user'></span>"
+          name: A propos
+          url: /about/
+          weight: 30
+        - identifier: rss
+          name: ""
+          pre: "<span data-feather='rss'></span>"
+          url: /index.xml
+          weight: 60
+        - identifier: fr
+          name: 🇫🇷
+          url: /fr/
+          weight: 80
+        - identifier: en
+          name: 🇬🇧
+          url: /en/
+          weight: 90
+
+  en:
+    disabled: false
+    languageCode: en-US
+    languageDirection: ltr
+    languageName: English
+    weight: 2
+    params:
+      subtitle: 'Reference, Tutorials, and Explanations'
+      description: 'More or less techninal stuff from a geeky Solution Architect'
+    menu:
+      main:
+        - identifier: home
+          pre: "<span data-feather='home'></span>"
+          weight: 1
+          name: Home
+          url: "/"
+        - identifier: posts
+          url: /en/posts/
+          pre: "<span data-feather='book'></span>"
+          name: Posts
+          weight: 2
+        - identifier: tags
+          pre: "<span data-feather='tag'></span>"
+          name: Tags
+          url: /tags/
+          weight: 3
+        - identifier: about
+          pre: "<span data-feather='user'></span>"
+          name: About
+          url: /en/about/
+          weight: 30
+        - identifier: rss
+          name: ""
+          pre: "<span data-feather='rss'></span>"
+          url: /en/index.xml
+          weight: 60
+        - identifier: fr
+          name: 🇫🇷
+          url: /fr/
+          weight: 80
+        - identifier: en
+          name: 🇬🇧
+          url: /en/
+          weight: 90
