@@ -90,11 +90,11 @@ __"_Ca marche plus Internet !!!!_"__ (quelqu'un dans la maison)
 Evidémment si on a une seule machine faisant tourner ce service c'est vite embêtant et on voit tout de suite le SPOF (Single Point Of Failure).  
 Dans mon cas, en plus du (vieux) NUC sur lequel je déploie mes services, j'ai aussi 1 Raspberry Pi qui peut tout à fait prendre le relais pour ce service.  
 Néanmoins, **hors de question** de devoir reconfigurer mon réseau pour que toutes les machines utilisent une nouvelle adresse IP.  
-L'idée va donc être d'utiliser une adresse IP flottante qui ira là où le service est actif (avec une préférence pour le NUC).  
+L'idée va être d'utiliser une adresse IP flottante qui ira là où le service est actif (avec une préférence pour le NUC).  
 Et la bonne nouvelle, c'est que [Keepalived](https://www.keepalived.org/) est tout à fait en messure de faire çà mais aussi qu'il est disponible sur toutes les distributions Linux.
 
 ### Mise en place de Keepalived
-Une fois Keepalived installé (`dnf install keepalived` par exemple), on va devoir le configurer.  
+Après avoir déployé AdGuard Home sur une 2ème machine et avoir installé Keepalived (`dnf install keepalived` par exemple), on va devoir le configurer.  
 Plusieurs modes de fonctionnement sont disponibles mais dans mon cas, je veux basculer automatiquement une adresse IP d'un serveur à un autre avec une préférence pour un serveur si le service est démarré sur les deux.
 
 Ma machine principale (le NUC) aura le rôle de MASTER et l'autre (le Raspberry Pi) SLAVE dans cette configuration.  
@@ -167,7 +167,8 @@ vrrp_instance adguardhome {
 Les points notables :
 - `state` : MASTER ou SLAVE
 - `priority` : le serveur avec la plus haute priorité gagne
-- le script défini par `chk_adguardhome` : si le script renvoie 0, adguardhome est démarré sinon, il est arrêté.  
+- `virtual_ipaddress` : où on définit l'adresse IP qui va se déplacer
+- le script défini par `chk_adguardhome` : c'est ce script qui va vérifier l'état du service. Si le script renvoie 0, adguardhome est démarré sinon, il est arrêté.  
 Dans mon cas avec une Quadlet, le script est celui-ci :
 ```bash
 #/usr/libexec/keepalived/chk_adguardhome
@@ -212,11 +213,11 @@ Et voilà, notre 2ème serveur AdGuard Home sera automatiquement et régulièrem
 
 ## Bonus : fonctionnement hors du réseau local
 Avoir le serveur DNS qui filtre localement c'est bien mais si vous sortez de votre maison, votre Smartphone va se retrouver en 4G/5G et donc subir toutes les publicités et autres traqueurs.  
-Pour remédier à ça, j'ai décidé de me connecter systématiquement en VPN chez moi et donc d'hériter d'AdGuard Home.  pour ça, j'ai utilisé Wireguard disponible nativement sur ma Box Internet (merci [Free](https://free.fr)).  
+Pour remédier à ça, j'ai décidé de me connecter systématiquement en VPN chez moi et donc d'hériter d'AdGuard Home. J'ai utilisé Wireguard disponible nativement sur ma Box Internet (merci [Free](https://free.fr)) mais tout autre solution vous permettant un accès VPN fonctionnera.  
 On peut même décider de ne faire passer QUE la résolution DNS à travers ce VPN.
 
 ## Conclusion
-Avec tout cela, on a maintenant une architecture DNS filtrant les publicités, redondante et permettant à notre DNS de répondre dans (presque) tous les cas (qui de surcroît nous ajoute une couche de confidentialité et de sécurité grâche aux serveurs DoH de Quad9).  
+Avec tout cela, on a maintenant une architecture DNS filtrant les publicités, redondante et permettant à notre DNS de répondre dans (presque) tous les cas et qui de surcroît nous ajoute une couche de confidentialité et de sécurité grâche aux serveurs DoH de Quad9 !.  
 J'espère que vous aurez trouvé l'article utile. 
 
 ## Références
