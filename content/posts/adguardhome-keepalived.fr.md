@@ -87,7 +87,7 @@ C'est toutes les machines/laptops/smartphones/tablettes qui ne fonctionnent plus
 __"_Ca marche plus Internet !!!!_"__ (quelqu'un dans la maison)
 
 ### Keepalived à la rescousse
-Evidémment si on a une seule machine faisant tourner ce servicen c'est vite embêtant et on voit tout de suite le SPOF (Single Point Of Failure).  
+Evidémment si on a une seule machine faisant tourner ce service c'est vite embêtant et on voit tout de suite le SPOF (Single Point Of Failure).  
 Dans mon cas, en plus du (vieux) NUC sur lequel je déploie mes services, j'ai aussi 1 Raspberry Pi qui peut tout à fait prendre le relais pour ce service.  
 Néanmoins, **hors de question** de devoir reconfigurer mon réseau pour que toutes les machines utilisent une nouvelle adresse IP.  
 L'idée va donc être d'utiliser une adresse IP flottante qui ira là où le service est actif (avec une préférence pour le NUC).  
