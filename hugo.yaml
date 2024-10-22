@@ -67,6 +67,11 @@ languages:
           name: A propos
           url: /about/
           weight: 30
+        # - identifier: friends
+        #   pre: "<span data-feather='users'></span>"
+        #   name: Les copains
+        #   url: /friends/
+        #   weight: 40
         - identifier: rss
           name: ""
           pre: "<span data-feather='rss'></span>"
@@ -112,6 +117,11 @@ languages:
           name: About
           url: /en/about/
           weight: 30
+        # - identifier: friends
+        #   pre: "<span data-feather='users'></span>"
+        #   name: Friends
+        #   url: /friends/
+        #   weight: 40
         - identifier: rss
           name: ""
           pre: "<span data-feather='rss'></span>"
