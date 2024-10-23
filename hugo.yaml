@@ -22,7 +22,7 @@ params:
   footer: Sébastien LALLEMAND
   showPostsOnHomePage: recent
   numberPostsOnHomePage: 3
-  dateFormat: 02 Jan 2006
+  dateFormat: 02 January 2006
   socialIcons:
     - name: twitter
       url: 'https://x.com/slallemand_rh'

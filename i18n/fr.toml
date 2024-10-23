@@ -16,3 +16,7 @@
   other = 'Tags'
 [Posts]
     other = 'Articles'
+[Updated]
+  other = "Mise à jour"
+[Published]
+  other = "Publié le"
