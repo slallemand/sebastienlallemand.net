@@ -176,7 +176,7 @@ Les points notables :
 - le script défini par `chk_adguardhome` : c'est ce script qui va vérifier l'état du service. Si le script renvoie 0, adguardhome est démarré sinon, il est arrêté.  
 Dans mon cas avec une Quadlet, le script est celui-ci :
 ```bash
-#/usr/libexec/keepalived/chk_adguardhome
+# /usr/libexec/keepalived/chk_adguardhome
 #!/bin/sh
 
 /usr/bin/systemctl is-active --quiet adguardhome
@@ -188,7 +188,7 @@ Là encore, bonne nouvelle car il existe un utilitaire ([adguardhome-sync](https
 
 Sur le serveur principal, on va juste ajouter une nouvelle Quadlet:
 ```bash
-#/etc/containers/systemd/adguardhome/adguardhome-sync.container
+# /etc/containers/systemd/adguardhome/adguardhome-sync.container
 [Unit]
 Description=AdGuardHome Sync Quadlet
 After=local-fs.target
@@ -214,10 +214,74 @@ Restart=always
 TimeoutStartSec=60
 ```
 
-Et voilà, notre 2ème serveur AdGuard Home sera automatiquement et régulièrement mis à jour !
+On configure le service via le fichier `adguardhome-sync.yaml` où on va lui indiquer la source et destination(s) :
+
+```
+# adguardhome-sync.yaml
+# cron expression to run in daemon mode. (default; "" = runs only once)
+cron: "0 */2 * * *"
+
+# runs the synchronisation on startup
+runOnStart: true
+
+# If enabled, the synchronisation task will not fail on single errors, but will log the errors and continue
+continueOnError: false
+
+origin:
+  # url of the origin instance
+  url: https://adguard.$DOMAIN
+  # apiPath: define an api path if other than "/control"
+  # insecureSkipVerify: true # disable tls check
+  username: admin
+  password: IeVo0eime}sooze~
+  # cookie: Origin-Cookie-Name=CCCOOOKKKIIIEEE
+
+# replicas instances
+replicas:
+  # url of the replica instance
+  - url: https://adguard-slave.$DOMAIN
+    username: admin
+    password: Y0ur_Aw3s0me_p@ssw0RD!
+    # cookie: Replica1-Cookie-Name=CCCOOOKKKIIIEEE
+
+# Configure the sync API server, disabled if api port is 0
+api:
+  # Port, default 8080
+  port: 8080
+  # if username and password are defined, basic auth is applied to the sync API
+  username: admin
+  password: Y0ur_Aw3s0me_p@ssw0RD!
+  # enable api dark mode
+  darkMode: true
+
+    # enable metrics on path '/metrics' (api port must be != 0)
+    # metrics:
+    # enabled: true
+  # scrapeInterval: 30s
+  # queryLogLimit: 10000
+
+# Configure sync features; by default all features are enabled.
+features:
+  generalSettings: true
+  queryLogConfig: true
+  statsConfig: true
+  clientSettings: true
+  services: true
+  filters: true
+  dhcp:
+    serverConfig: true
+    staticLeases: true
+  dns:
+    serverConfig: true
+    accessLists: true
+    rewrites: true
+```
+
+On démarre le service et voilà, notre 2ème serveur AdGuard Home sera automatiquement et régulièrement mis à jour !
 
 ## Bonus : fonctionnement hors du réseau local
 Avoir le serveur DNS qui filtre localement c'est bien mais si vous sortez de votre maison, votre Smartphone va se retrouver en 4G/5G et donc subir toutes les publicités et autres traqueurs.  
+
 Pour remédier à ça, j'ai décidé de me connecter systématiquement en VPN chez moi et donc d'hériter d'AdGuard Home. J'ai utilisé Wireguard disponible nativement sur ma Box Internet (merci [Free](https://free.fr)) mais tout autre solution vous permettant un accès VPN fonctionnera.  
 On peut même décider de ne faire passer QUE la résolution DNS à travers ce VPN.
 
@@ -225,8 +289,11 @@ On peut même décider de ne faire passer QUE la résolution DNS à travers ce V
 Avec tout cela, on a maintenant une architecture DNS filtrant les publicités, redondante et permettant à notre DNS de répondre dans (presque) tous les cas et qui de surcroît nous ajoute une couche de confidentialité et de sécurité grâche aux serveurs DoH de Quad9 !.  
 J'espère que vous aurez trouvé l'article utile. 
 
+## Remerciements
+Un grand merci à [Nico](https://www.itix.fr/) pour ces commentaires pendant la relecture !
+
 ## Références
 - [AdGuard Home](https://adguard.com/fr/adguard-home/overview.html)
+- [Keepalived](https://www.keepalived.org/)
 - [Podman](https://podman.io/)  
 - [Quadlet](https://www.redhat.com/en/blog/quadlet-podman)
-- [Keepalived](https://www.keepalived.org/)
