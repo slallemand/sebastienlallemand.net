@@ -84,7 +84,11 @@ Bingo ! AdGuard Home nous répond 0.0.0.0 qui évidemment ne sera pas joignable 
 On reconfigure sa box Internet pour utiliser cette adresse IP sur tout le réseau et tout va bien, nous pouvons aller dormir ... Ah oui ? ... Il se passe quoi si la machine qui héberge AdGuard Home est arrêtée ou reboot ou brûle ou ... est au minimum inaccessible ?  
 Ce sont toutes les machines/laptops/smartphones/tablettes qui ne fonctionnent plus car elles ne peuvent plus faire de résolution DNS !  
 
+
+![Internet is down](/images/internet-down.gif)
+
 __"_Ca marche plus Internet !!!!_"__ (quelqu'un dans la maison)
+
 
 ### Keepalived à la rescousse
 Evidémment si on a une seule machine faisant tourner ce service c'est vite embêtant et on voit tout de suite le SPOF (Single Point Of Failure).  
