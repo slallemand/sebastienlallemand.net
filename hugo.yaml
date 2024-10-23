@@ -29,7 +29,7 @@ params:
     - name: github
       url: 'https://github.com/slallemand'
     - name: linkedin
-      url: 'https://www.linkedin.com/in/s%C3%A9bastien-lallemand-7000828/'
+      url: 'https://fr.linkedin.com/in/sebastien-lallemand'
 sitemap:
   changefreq: weekly
   filename: sitemap.xml
