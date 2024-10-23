@@ -2,7 +2,7 @@
 date: 2024-10-22
 # description: ""
 # image: ""
-lastmod: 2024-10-22
+lastmod: 2024-10-23
 showTableOfContents: true
 title: "Déploiement d'AdGuard Home en haute-disponibilité avec Keepalived"
 type: "post"
@@ -65,6 +65,11 @@ TimeoutStartSec=60
 
 _Remarque_ : les lignes `Label=` ne sont utiles que parce que j'utilise [traefik](https://traefik.io/traefik/) pour exposer mes services sur mon réseau.
 
+On autorise les connexions sur notre firewall :
+```bash
+$ sudo firewall-cmd --add-service=dns --permanent --zone=public
+```
+
 Cela fait, il nous reste un peu de configuration/adpatation à nos besoins et cela se fait directement dans l'interface d'AdGuard Home (qui se retrouve exposée sur https://adguard.$DOMAIN dans mon cas).  
 Par défaut, AdGuard Home utilise les serveurs DNS de [Quad9](https://quad9.net) en upstream. Quad9 est (_je  les cite_) une fondation Suisse dont le but est de fournir un Internet plus sûr et plus robuste pour tout le monde.  
 Vous pouvez bien évidemment utiliser ceux que vous voulez mais pour ma part j'ai décidé de les utiliser en privilégiant leur version DoH (DNS over HTTPS) https://dns.quad9.net/dns-query.  
@@ -99,6 +104,10 @@ Et la bonne nouvelle, c'est que [Keepalived](https://www.keepalived.org/) est to
 
 ### Mise en place de Keepalived
 Après avoir déployé AdGuard Home sur une 2ème machine et avoir installé Keepalived (`dnf install keepalived` par exemple), on va devoir le configurer.  
+Tout d'abord, autorisons les connexions du protocol vrrp (le protocole utilisé par keepalived) sur notre firewall :
+```bash
+$ sudo firewall-cmd --add-protocol=vrrp --permanent --zone=public
+```
 Plusieurs modes de fonctionnement sont disponibles mais dans mon cas, je veux basculer automatiquement une adresse IP d'un serveur à un autre avec une préférence pour un serveur si le service est démarré sur les deux.
 
 Ma machine principale (le NUC) aura le rôle de MASTER et l'autre (le Raspberry Pi) SLAVE dans cette configuration.  
