@@ -81,8 +81,8 @@ $ dig @192.168.1.200 ad.doubleclick.net +short
 
 Bingo ! AdGuard Home nous répond 0.0.0.0 qui évidemment ne sera pas joignable !
 
-On reconfigure sa box Internet pour utiliser cette adresse IP sur tous le réseau et tout va bien, nous pouvons aller dormir ... Ah oui ? ... Il se passe quoi si la machine qui héberge AdGuard Home est arrêtée ou reboot ou brûle ou ... est au minimum inaccessible ?  
-C'est toutes les machines/laptops/smartphones/tablettes qui ne fonctionnent plus car elles ne peuvent plus faire de résolution DNS !  
+On reconfigure sa box Internet pour utiliser cette adresse IP sur tout le réseau et tout va bien, nous pouvons aller dormir ... Ah oui ? ... Il se passe quoi si la machine qui héberge AdGuard Home est arrêtée ou reboot ou brûle ou ... est au minimum inaccessible ?  
+Ce sont toutes les machines/laptops/smartphones/tablettes qui ne fonctionnent plus car elles ne peuvent plus faire de résolution DNS !  
 
 __"_Ca marche plus Internet !!!!_"__ (quelqu'un dans la maison)
 
