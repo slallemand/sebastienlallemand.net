@@ -139,6 +139,7 @@ vrrp_instance adguardhome {
 
 Sur le serveur SLAVE :
 ```bash
+# /etc/keepalived/keepalived.conf
 global_defs {
     enable_script_security
     script_user root
