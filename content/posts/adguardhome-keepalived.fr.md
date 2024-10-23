@@ -100,7 +100,7 @@ Evidémment si on a une seule machine faisant tourner ce service c'est vite emb�
 Dans mon cas, en plus du (vieux) NUC sur lequel je déploie mes services, j'ai aussi 1 Raspberry Pi qui peut tout à fait prendre le relais pour ce service.  
 Néanmoins, **hors de question** de devoir reconfigurer mon réseau pour que toutes les machines utilisent une nouvelle adresse IP.  
 L'idée va être d'utiliser une adresse IP flottante qui ira là où le service est actif (avec une préférence pour le NUC).  
-Et la bonne nouvelle, c'est que [Keepalived](https://www.keepalived.org/) est tout à fait en messure de faire çà mais aussi qu'il est disponible sur toutes les distributions Linux.
+Et la bonne nouvelle, c'est que [Keepalived](https://www.keepalived.org/) est tout à fait en mesure de faire çà mais aussi qu'il est disponible sur toutes les distributions Linux.
 
 ### Mise en place de Keepalived
 Après avoir déployé AdGuard Home sur une 2ème machine et avoir installé Keepalived (`dnf install keepalived` par exemple), on va devoir le configurer.  
