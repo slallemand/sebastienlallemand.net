@@ -1,13 +1,12 @@
 ---
 date: '2024-10-19T09:59:26+02:00'
 draft: false
-title: 'Les Copains'
+title: 'Les copains'
 type: "page"
 showTableOfContents: false  
 ---
 
-
-# Les blogs des copains qui partagent des articles techniques
+![friends](/images/friends.gif)
 
 ## Nicolas MASSE
 [www.itix.fr](https://www.itix.fr/)

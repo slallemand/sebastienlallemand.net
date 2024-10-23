@@ -6,7 +6,7 @@ type: "page"
 showTableOfContents: false  
 ---
 
-# Some friends blogs sharing their technical articles
+![friends](/images/friends.gif)
 
 ## Nicolas MASSE
 [www.itix.fr](https://www.itix.fr/)
