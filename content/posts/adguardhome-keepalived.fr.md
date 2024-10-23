@@ -198,7 +198,7 @@ AutoUpdate=registry
 Environment="TZ=Europe/Paris"
 Image=ghcr.io/bakito/adguardhome-sync
 Label="traefik.enable=true"
-Label=traefik.docker.network=systemd-traefik-net
+Label="traefik.docker.network=systemd-traefik-net"
 Label="traefik.http.routers.adguardhome-sync.rule=Host(`adguard-sync.$DOMAIN`)"
 Label="traefik.http.routers.adguardhome-sync.entrypoints=websecure"
 Label="traefik.http.routers.adguardhome-sync.tls.certresolver=MYRESOLVER"
@@ -216,7 +216,7 @@ TimeoutStartSec=60
 
 On configure le service via le fichier `adguardhome-sync.yaml` où on va lui indiquer la source et destination(s) :
 
-```
+```yaml
 # adguardhome-sync.yaml
 # cron expression to run in daemon mode. (default; "" = runs only once)
 cron: "0 */2 * * *"
@@ -233,7 +233,7 @@ origin:
   # apiPath: define an api path if other than "/control"
   # insecureSkipVerify: true # disable tls check
   username: admin
-  password: IeVo0eime}sooze~
+  password: Y0ur_Aw3s0me_p@ssw0RD!
   # cookie: Origin-Cookie-Name=CCCOOOKKKIIIEEE
 
 # replicas instances
@@ -250,7 +250,7 @@ api:
   port: 8080
   # if username and password are defined, basic auth is applied to the sync API
   username: admin
-  password: Y0ur_Aw3s0me_p@ssw0RD!
+  password: ANOth3er_Aw3s0me_p@ssw0RD!
   # enable api dark mode
   darkMode: true
 
@@ -282,11 +282,11 @@ On démarre le service et voilà, notre 2ème serveur AdGuard Home sera automati
 ## Bonus : fonctionnement hors du réseau local
 Avoir le serveur DNS qui filtre localement c'est bien mais si vous sortez de votre maison, votre Smartphone va se retrouver en 4G/5G et donc subir toutes les publicités et autres traqueurs.  
 
-Pour remédier à ça, j'ai décidé de me connecter systématiquement en VPN chez moi et donc d'hériter d'AdGuard Home. J'ai utilisé Wireguard disponible nativement sur ma Box Internet (merci [Free](https://free.fr)) mais tout autre solution vous permettant un accès VPN fonctionnera.  
+Pour remédier à ça, j'ai décidé de me connecter systématiquement en VPN chez moi et donc d'hériter d'AdGuard Home. J'ai utilisé [Wireguard](https://www.wireguard.com/) disponible nativement sur ma Box Internet (merci [Free](https://free.fr)) mais tout autre solution vous permettant un accès VPN fonctionnera.  
 On peut même décider de ne faire passer QUE la résolution DNS à travers ce VPN.
 
 ## Conclusion
-Avec tout cela, on a maintenant une architecture DNS filtrant les publicités, redondante et permettant à notre DNS de répondre dans (presque) tous les cas et qui de surcroît nous ajoute une couche de confidentialité et de sécurité grâche aux serveurs DoH de Quad9 !.  
+Avec tout cela, on a maintenant une architecture DNS filtrant les publicités, redondante et permettant à notre DNS de répondre dans (presque) tous les cas et qui de surcroît nous ajoute une couche de confidentialité et de sécurité grâche aux serveurs DoH de Quad9 !  
 J'espère que vous aurez trouvé l'article utile. 
 
 ## Remerciements
