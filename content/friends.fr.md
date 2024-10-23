@@ -6,3 +6,12 @@ type: "page"
 showTableOfContents: false  
 ---
 
+
+# Les blogs des copains qui partagent des articles techniques
+
+## Nicolas MASSE
+[www.itix.fr](https://www.itix.fr/)
+
+## Frédéric KLEIN
+[blog.fklein.me](https://blog.fklein.me/)
+

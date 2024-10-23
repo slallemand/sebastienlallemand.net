@@ -5,3 +5,11 @@ title: 'Friends'
 type: "page"
 showTableOfContents: false  
 ---
+
+# Some friends blogs sharing their technical articles
+
+## Nicolas MASSE
+[www.itix.fr](https://www.itix.fr/)
+
+## Frédéric KLEIN
+[blog.fklein.me](https://blog.fklein.me/)
