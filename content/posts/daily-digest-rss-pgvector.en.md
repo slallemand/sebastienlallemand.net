@@ -181,7 +181,7 @@ All rendered as clean HTML, readable in any email client.
 
 ## Going further
 
-The workflow is available on [GitHub](https://github.com/slallemand/n8n-workflows/tree/main/rss). To adapt it:
+The workflow is available on [GitHub](https://github.com/slallemand/n8n-workflows/tree/main/RSS-DailyDigest). To adapt it:
 
 - **Replace FreshRSS** with any source: n8n's native RSS node, an HTTP call to another aggregator
 - **Change the AI provider**: any OpenAI-compatible API works (Mistral, local Ollama...) — the key is to keep the *same model* between ingestion and search
